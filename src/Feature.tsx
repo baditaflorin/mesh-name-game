@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import {
+  MeshNameInput,
   createClockSync,
   useEventLog,
   useFairRng,
@@ -113,13 +114,12 @@ function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
         </p>
       </header>
 
-      <input
+      <MeshNameInput
         className="namegame-name"
         placeholder="your name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={setName}
         maxLength={24}
-        aria-label="your name"
       />
 
       <div className="namegame-prompt">
