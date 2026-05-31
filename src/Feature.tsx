@@ -95,6 +95,13 @@ function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
     phase.transition("round", { from: "reveal" });
   };
 
+  // Any peer may close the round early once answers are in, instead of
+  // waiting out the 30s slot timer. The transition writes to the Yjs doc,
+  // so every peer flips to "reveal" and agrees on the winner.
+  const reveal = () => {
+    phase.transition("reveal", { from: "round" });
+  };
+
   const submit = () => {
     const text = draft.trim();
     if (!text || !trimmedName || phase.phase !== "round") return;
@@ -161,6 +168,12 @@ function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
       {phase.phase === "lobby" && (
         <button type="button" className="namegame-start" onClick={start} disabled={!trimmedName}>
           start
+        </button>
+      )}
+
+      {phase.phase === "round" && (
+        <button type="button" className="namegame-reveal" onClick={reveal}>
+          reveal winner
         </button>
       )}
 

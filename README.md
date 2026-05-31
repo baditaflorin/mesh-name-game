@@ -1,7 +1,7 @@
 # mesh-name-game
 
 [![pages](https://img.shields.io/badge/live-baditaflorin.github.io%2Fmesh-name-game-ff6688)](https://baditaflorin.github.io/mesh-name-game/)
-[![version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/baditaflorin/mesh-name-game/blob/main/package.json)
+[![version](https://img.shields.io/badge/version-0.1.1-blue)](https://github.com/baditaflorin/mesh-name-game/blob/main/package.json)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 > Categories speed race: random letter + category, first valid answer wins.
