@@ -7,6 +7,7 @@ import {
   useMeshSlot,
   useNamedPeer,
   usePhase,
+  useRoster,
   type MeshConfig,
   type YRoom,
 } from "@baditaflorin/mesh-common";
@@ -47,7 +48,11 @@ export function Feature({ room, config }: Props) {
 
 function Body({ room, config }: { room: YRoom; config: MeshConfig }) {
   const { name, setName, nameOf } = useNamedPeer(config, room);
-  const fairRng = useFairRng(room, "namegame-salts");
+  const roster = useRoster(room);
+  const fairRng = useFairRng(room, "namegame-salts", {
+    peerIds: roster.present,
+    minContributors: 1,
+  });
   const phase = usePhase<"lobby" | "round" | "reveal">(room, "phase", "lobby");
   const answers = useEventLog<Answer>(room, "answers");
   const clock = useMemo(() => (room ? createClockSync(room.provider) : null), [room]);
